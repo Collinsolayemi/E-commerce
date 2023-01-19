@@ -1,11 +1,13 @@
 const User = require("../model/user");
 const cryptoJS = require("crypto-js");
 const { StatusCodes } = require("http-status-codes/build/cjs/status-codes");
+const jwt = require("jsonwebtoken");
 
 exports.getUser = (req, res) => {
   res.send("get user");
 };
 
+//REGISTRATION FUNCTIONALITY
 exports.createUser = async (req, res) => {
   const newUser = new User({
     username: req.body.username,
@@ -24,7 +26,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-//LOGIN
+//LOGIN FUNCTIONALITY
 exports.logIn = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
@@ -42,11 +44,22 @@ exports.logIn = async (req, res) => {
     if (userPassord !== req.body.password) {
       res.status(500).json("wrong credencial");
     }
-    //we destructure because we dont want to display the password
+
+    //jwt token
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "3d" }
+    );
+
+    //hide the password from the res
     const { password, ...others } = user._doc;
 
-    return res.status(201).json(others);
+    return res.status(201).json({ ...others, accessToken });
   } catch (err) {
-    console.log(err);
+    res.status(StatusCodes.BAD_REQUEST).json({ err });
   }
 };
