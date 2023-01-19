@@ -21,6 +21,14 @@ const OrderModel = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    address: {
+      type: Object,
+      required: true,
+    },
+    status: {
+      type: String,
+      default: "pending",
+    },
   },
   { timestamps: true }
 );

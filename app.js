@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const DB = require("./DB/connect-database");
-const userRoute = require("./routes/userRoute");
+const userRoute = require("./routes/user");
 
 //middleware
 app.use(express.json());
