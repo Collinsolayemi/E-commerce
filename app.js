@@ -14,6 +14,6 @@ app.use("/api/user", userRoute);
 //starting the server
 const port = process.env.PORT || 1000;
 app.listen(port, () => {
-  console.log(`backnd running on port ${port}`);
+  console.log(`Server running on port ${port}`);
   return DB;
 });
