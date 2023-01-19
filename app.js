@@ -7,8 +7,12 @@ dotenv.config();
 const DB = require("./DB/connect-database");
 const userRoute = require("./routes/userRoute");
 
-const port = process.env.PORT || 1000;
+//middleware
+app.use(express.json());
+app.use("/api/user", userRoute);
 
+//starting the server
+const port = process.env.PORT || 1000;
 app.listen(port, () => {
   console.log(`backnd running on port ${port}`);
   return DB;

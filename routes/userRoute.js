@@ -4,7 +4,9 @@ router.get("/usertest", (req, res) => {
   res.send("User test is successful");
 });
 
-router.post("/usertest", (req, res) => {
+router.post("/userposttest", (req, res) => {
+  const { username } = req.body;
+  console.log(username);
   res.send("User create is successful");
 });
 
