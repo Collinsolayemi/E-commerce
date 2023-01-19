@@ -6,6 +6,7 @@ dotenv.config();
 
 const DB = require("./DB/connect-database");
 const userRoute = require("./routes/user");
+// const authRoute = require("./routes/auth");
 const authRoute = require("./routes/auth");
 
 //middleware
