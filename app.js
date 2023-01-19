@@ -1,19 +1,15 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
-const DB = process.env.DATABASE_URL;
-mongoose
-  .set("strictQuery", false)
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("DB connected"));
+const DB = require("./DB/connect-database");
+const userRoute = require("./routes/userRoute");
 
 const port = process.env.PORT || 1000;
 
 app.listen(port, () => {
   console.log(`backnd running on port ${port}`);
+  return DB;
 });
