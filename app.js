@@ -6,11 +6,12 @@ dotenv.config();
 
 const DB = require("./DB/connect-database");
 const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth");
 
 //middleware
 app.use(express.json());
 app.use("/api/user", userRoute);
-
+app.use("/api/auth", authRoute);
 //starting the server
 const port = process.env.PORT || 1000;
 app.listen(port, () => {
