@@ -1,5 +1,6 @@
 const User = require("../model/user");
 const cryptoJS = require("crypto-js");
+const { StatusCodes } = require("http-status-codes/build/cjs/status-codes");
 
 exports.getUser = (req, res) => {
   res.send("get user");
@@ -17,7 +18,7 @@ exports.createUser = async (req, res) => {
 
   try {
     const savedUser = await newUser.save();
-    res.status(201).json({ savedUser });
+    res.status(StatusCodes.OK).json({ savedUser });
   } catch (err) {
     console.log(err);
   }
@@ -28,7 +29,7 @@ exports.logIn = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
-      res.status(500).json("Wrong credencials");
+      res.status(StatusCodes.NOT_FOUND).json("Wrong credencials");
     }
 
     //encrypt the password
@@ -49,6 +50,3 @@ exports.logIn = async (req, res) => {
     console.log(err);
   }
 };
-
-// "username": "collins-olayemi",
-// "password": "secret"
