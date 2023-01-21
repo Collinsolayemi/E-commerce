@@ -45,7 +45,7 @@ router.get("/find/:id", async (req, res) => {
   try {
     const getUser = await User.findById(req.params.id);
     const { password, ...user } = getUser._doc;
-    return res.status(201).json(user);
+    return res.status(StatusCodes.OK).json(user);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
     const getAllUser = await User.find();
     const { password, ...others } = getAllUser;
     console.log(getAllUser, password);
-    return res.status(201).json(getAllUser);
+    return res.status(StatusCodes.OK).json(getAllUser);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
