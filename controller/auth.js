@@ -57,9 +57,10 @@ exports.logIn = async (req, res) => {
 
     //hide the password from the res
     const { password, ...others } = user._doc;
-
     return res.status(201).json({ ...others, accessToken });
   } catch (err) {
     res.status(StatusCodes.BAD_REQUEST).json({ err });
   }
 };
+
+//
