@@ -6,7 +6,6 @@ const cryptoJS = require("crypto-js");
 exports.getAllUsers = async (req, res) => {
   try {
     const getAllUser = await User.find();
-    console.log(getAllUser);
     return res.status(StatusCodes.OK).json(getAllUser);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);

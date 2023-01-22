@@ -7,6 +7,10 @@ const {
 } = require("../JWT/verify-token");
 
 router.route("/").post(verifyTokenAndAdmin, productController.createNewProduct);
-router.route("/:id").put(verifyTokenAndAdmin, productController.updateProduct);
+router
+  .route("/:id")
+  .put(verifyTokenAndAdmin, productController.updateProduct)
+  .delete(verifyTokenAndAdmin, productController.deleteProduct)
+  .get(productController.getProduct);
 
 module.exports = router;
