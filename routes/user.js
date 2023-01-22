@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {
   verifyToken,
-  verufyAndAuthorize,
+  verifyAndAuthorize,
   verifyTokenAndAdmin,
 } = require("../JWT/verify-token");
 const userController = require("../controller/user");
@@ -10,9 +10,9 @@ router.route("/find/:id").get(userController.getuser);
 router.route("/").get(userController.getAllUsers);
 router
   .route("/:id")
-  .put(verufyAndAuthorize, userController.updateUser)
+  .put(verifyAndAuthorize, userController.updateUser)
   .delete(userController.deleteUser);
 
-//ADDING STats
+router.route("/stat").get(userController.getStat);
 
 module.exports = router;
