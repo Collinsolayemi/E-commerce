@@ -31,7 +31,7 @@ exports.updateUser = async (req, res) => {
     );
     res.status(StatusCodes.OK).json(updatedUser);
   } catch (err) {
-    res.status(StatusCodes.NOT_FOUND).json();
+    res.status(StatusCodes.NOT_FOUND).json(err);
   }
 };
 

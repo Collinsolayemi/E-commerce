@@ -7,11 +7,15 @@ dotenv.config();
 const DB = require("./DB/connect-database");
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
+const productRoute = require("./routes/product");
 
 //middleware
 app.use(express.json());
+
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/product", productRoute);
+
 //starting the server
 const port = process.env.PORT || 1000;
 app.listen(port, () => {

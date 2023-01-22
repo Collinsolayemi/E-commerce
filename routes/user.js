@@ -6,6 +6,7 @@ const {
 } = require("../JWT/verify-token");
 const userController = require("../controller/user");
 
+//ROUTE
 router.route("/find/:id").get(userController.getuser);
 router.route("/").get(userController.getAllUsers);
 router
