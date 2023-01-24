@@ -21,11 +21,14 @@ exports.getAllProducts = async (req, res) => {
     const qNew = req.query.new;
     const qcategory = req.query.category;
 
-    /////////////////////////
-
-    //1 hours 28min
-
-    /////////////////
+    try {
+      let product;
+      if (qNew) {
+        await Product.findB;
+      }
+    } catch (err) {
+      res.status(StatusCodes.NOT_FOUND).json(err);
+    }
 
     const getAllProducts = await User.find();
     return res.status(StatusCodes.OK).json(getAllProducts);
