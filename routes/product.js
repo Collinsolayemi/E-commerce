@@ -6,7 +6,10 @@ const {
   verifyAndAuthorize,
 } = require("../JWT/verify-token");
 
-router.route("/").post(verifyTokenAndAdmin, productController.createNewProduct);
+router
+  .route("/")
+  .post(verifyTokenAndAdmin, productController.createNewProduct)
+  .get(productController.getAllProducts);
 router
   .route("/:id")
   .put(verifyTokenAndAdmin, productController.updateProduct)

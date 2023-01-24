@@ -17,21 +17,27 @@ exports.createNewProduct = async (req, res) => {
 
 //GET ALL PRODUCTS
 exports.getAllProducts = async (req, res) => {
+  const qNew = req.query.new;
+  const qcategory = req.query.category;
+
   try {
-    const qNew = req.query.new;
-    const qcategory = req.query.category;
-
-    try {
-      let product;
-      if (qNew) {
-        await Product.findB;
-      }
-    } catch (err) {
-      res.status(StatusCodes.NOT_FOUND).json(err);
+    let products;
+    if (qNew) {
+      products = await Product.find().sort({ createdAt: -1 }).limit(1);
+    } else if (qcategory) {
+      products = await Product.find({
+        categories: {
+          $in: [qcategory],
+        },
+      });
+    } else {
+      products = await Product.find();
     }
-
-    const getAllProducts = await User.find();
-    return res.status(StatusCodes.OK).json(getAllProducts);
+    res.status(StatusCodes.OK).json({
+      status: "success",
+      product_nums: products.length,
+      message: products,
+    });
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }

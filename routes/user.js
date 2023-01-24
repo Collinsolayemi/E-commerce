@@ -7,7 +7,7 @@ const {
 const userController = require("../controller/user");
 
 //ROUTE
-router.route("/find/:id").get(userController.getuser);
+router.route("/:id").get(userController.getuser);
 router.route("/").get(userController.getAllUsers);
 router
   .route("/:id")

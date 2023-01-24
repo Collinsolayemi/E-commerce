@@ -30,9 +30,7 @@ exports.createUser = async (req, res) => {
 exports.logIn = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) {
-      res.status(StatusCodes.NOT_FOUND).json("Wrong credencials");
-    }
+    if (!user) res.status(400).json("Username incorrect");
 
     //encrypt the password
     const hashPassword = cryptoJS.AES.decrypt(
@@ -42,7 +40,7 @@ exports.logIn = async (req, res) => {
 
     const userPassord = hashPassword.toString(cryptoJS.enc.Utf8);
     if (userPassord !== req.body.password) {
-      res.status(500).json("wrong credencial");
+      res.status(StatusCodes.BAD_GATEWAY).json("Password incorrect");
     }
 
     //jwt token
@@ -59,8 +57,6 @@ exports.logIn = async (req, res) => {
     const { password, ...others } = user._doc;
     return res.status(201).json({ ...others, accessToken });
   } catch (err) {
-    res.status(StatusCodes.BAD_REQUEST).json({ err });
+    res.status(StatusCodes.BAD_REQUEST);
   }
 };
-
-//
