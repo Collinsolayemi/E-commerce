@@ -1,22 +1,21 @@
-const Product = require("../model/product");
-
 const { StatusCodes } = require("http-status-codes/build/cjs/status-codes");
 const cryptoJS = require("crypto-js");
+const Cart = require("../model/cart");
 
-//CREATE NEW PRODUCT
-exports.createNewProduct = async (req, res) => {
-  const product = Product(req.body);
+//CREATE NEW CART
+exports.createNewCart = async (req, res) => {
+  const cart = Cart(req.body);
 
   try {
-    const newProduct = await product.save();
-    res.status(StatusCodes.OK).json(newProduct);
+    const newCart = await cart.save();
+    res.status(StatusCodes.OK).json(newCart);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
 };
 
-//GET ALL PRODUCTS
-exports.getAllProducts = async (req, res) => {
+//GET ALL CART
+exports.getAllCart = async (req, res) => {
   const qNew = req.query.new;
   const qcategory = req.query.category;
 
@@ -43,10 +42,10 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-//UPDATE PRODUCT
-exports.updateProduct = async (req, res) => {
+//UPDATE CART
+exports.updateCart = async (req, res) => {
   try {
-    const updatedProduct = await User.findByIdAndUpdate(
+    const updatedCart = await Product.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
@@ -59,21 +58,21 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-//DELETE PRODUCT
-exports.deleteProduct = async (req, res) => {
+//DELETE CART
+exports.deleteCart = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
+    await Cart.findByIdAndDelete(req.params.id);
     res.status(StatusCodes.ACCEPTED).json("deleted successfully!");
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
 };
 
-//GET ONE PRODUCT
-exports.getProduct = async (req, res) => {
+//GET ONE CART
+exports.getCart = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    return res.status(StatusCodes.OK).json(product);
+    const cart = await Cart.findById(req.params.id);
+    return res.status(StatusCodes.OK).json(cart);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
