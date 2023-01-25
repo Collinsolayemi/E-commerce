@@ -14,6 +14,6 @@ router
   .route("/:id")
   .put(verifyTokenAndAdmin, productController.updateProduct)
   .delete(verifyTokenAndAdmin, productController.deleteProduct)
-  .get(verifyToken, productController.getProduct);
+  .get(verifyAndAuthorize, productController.getProduct);
 
 module.exports = router;

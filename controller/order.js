@@ -52,9 +52,19 @@ exports.deleteOrder = async (req, res) => {
 //GET ONE CART
 exports.getOrder = async (req, res) => {
   try {
-    const order = await Order.findOne({ userId: req.params.userId });
+    const order = await Order.find({ userId: req.params.userId });
     return res.status(StatusCodes.OK).json(order);
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
+  }
+};
+//GET MONTHLY INCOME
+exports.getStats = async (req, res) => {
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
+  try {
+  } catch (err) {
+    res.status(StatusCodes.BAD_REQUEST).json(err);
   }
 };
