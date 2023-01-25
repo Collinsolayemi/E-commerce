@@ -9,11 +9,11 @@ const {
 router
   .route("/")
   .post(verifyTokenAndAdmin, productController.createNewProduct)
-  .get(productController.getAllProducts);
+  .get(verifyAndAuthorize, productController.getAllProducts);
 router
   .route("/:id")
   .put(verifyTokenAndAdmin, productController.updateProduct)
   .delete(verifyTokenAndAdmin, productController.deleteProduct)
-  .get(productController.getProduct);
+  .get(verifyToken, productController.getProduct);
 
 module.exports = router;
