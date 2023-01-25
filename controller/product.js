@@ -78,29 +78,3 @@ exports.getProduct = async (req, res) => {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
 };
-
-// //STATS
-// exports.getStat = async (req, res) => {
-//   const date = new Date();
-//   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
-//   try {
-//     const data = await User.aggregate([
-//       { $match: { createdAt: { $gte: lastYear } } },
-//       {
-//         $project: {
-//           month: { $month: "$createdAt" },
-//         },
-//       },
-//       {
-//         $group: {
-//           _id: "$month",
-//           total: { $sum: 1 },
-//         },
-//       },
-//     ]);
-//     res.status(StatusCodes.OK).json(data);
-//   } catch (err) {
-//     res.status(StatusCodes.NOT_FOUND).json(err);
-//   }
-// };
