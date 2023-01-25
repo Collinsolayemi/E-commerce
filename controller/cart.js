@@ -1,5 +1,4 @@
 const { StatusCodes } = require("http-status-codes/build/cjs/status-codes");
-const cryptoJS = require("crypto-js");
 const Cart = require("../model/cart");
 
 //CREATE NEW CART
@@ -16,29 +15,11 @@ exports.createNewCart = async (req, res) => {
 
 //GET ALL CART
 exports.getAllCart = async (req, res) => {
-  const qNew = req.query.new;
-  const qcategory = req.query.category;
-
   try {
-    let products;
-    if (qNew) {
-      products = await Product.find().sort({ createdAt: -1 }).limit(1);
-    } else if (qcategory) {
-      products = await Product.find({
-        categories: {
-          $in: [qcategory],
-        },
-      });
-    } else {
-      products = await Product.find();
-    }
-    res.status(StatusCodes.OK).json({
-      status: "success",
-      product_nums: products.length,
-      message: products,
-    });
+    const cart = await Cart.find();
+    res.status(StatusCodes.ACCEPTED).json(cart);
   } catch (err) {
-    res.status(StatusCodes.NOT_FOUND).json(err);
+    res.status(StatusCodes.BAD_REQUEST).json(err);
   }
 };
 

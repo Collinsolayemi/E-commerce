@@ -9,7 +9,7 @@ const cartControllers = require("../controller/cart");
 router
   .route("/")
   .post(verifyToken, cartControllers.createNewCart)
-  .get(cartControllers.getAllCart);
+  .get(verifyTokenAndAdmin, cartControllers.getAllCart);
 router
   .route("/:id")
   .delete(verifyAndAuthorize, cartControllers.deleteCart)
