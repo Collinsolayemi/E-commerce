@@ -12,7 +12,6 @@ const cartRoute = require("./routes/cart");
 
 //middleware
 app.use(express.json());
-
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
