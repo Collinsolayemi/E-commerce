@@ -80,6 +80,8 @@ exports.getStats = async (req, res) => {
       },
     ]);
     res.status(StatusCodes.OK).json(income);
+
+  
   } catch (err) {
     res.status(StatusCodes.BAD_REQUEST).json(err);
   }

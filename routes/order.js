@@ -7,7 +7,7 @@ const {
 
 router
   .route("/")
-  .get(verifyTokenAndAdmin, rderControllers.getAllOrder)
+  .get(verifyTokenAndAdmin, orderControllers.getAllOrder)
   .post(orderControllers.createNewOrder);
 
 router
