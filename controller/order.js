@@ -43,7 +43,7 @@ exports.updateOrder = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
-    res.stavvvvvvvtus(StatusCodes.ACCEPTED).json("deleted successfully!");
+    res.status(StatusCodes.ACCEPTED).json("deleted successfully!");
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
