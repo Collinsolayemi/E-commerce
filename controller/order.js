@@ -43,7 +43,7 @@ exports.updateOrder = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
-    res.status(StatusCodes.ACCEPTED).json("deleted successfully!");
+    res.stavvvvvvvtus(StatusCodes.ACCEPTED).json("deleted successfully!");
   } catch (err) {
     res.status(StatusCodes.NOT_FOUND).json(err);
   }
@@ -80,10 +80,9 @@ exports.getStats = async (req, res) => {
       },
     ]);
     res.status(StatusCodes.OK).json(income);
-
-  
   } catch (err) {
     res.status(StatusCodes.BAD_REQUEST).json(err);
   }
 };
 
+///////////// 1 hour 47 min
